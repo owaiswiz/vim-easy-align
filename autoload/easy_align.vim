@@ -126,21 +126,21 @@ function! s:echon_(tokens)
     let len = len(join(map(copy(a:tokens), 'v:val[1]'), ''))
     let ellipsis = len > winlen ? '..' : ''
 
-    echon "\r"
+    " echon "\r"
     let yet = 0
     for [hl, msg] in a:tokens
       if empty(msg) | continue | endif
-      execute "echohl ". hl
+      " execute "echohl ". hl
       let yet += len(msg)
       if yet > winlen - len(ellipsis)
-        echon msg[ 0 : (winlen - len(ellipsis) - yet - 1) ] . ellipsis
+        " echon msg[ 0 : (winlen - len(ellipsis) - yet - 1) ] . ellipsis
         break
       else
-        echon msg
+        " echon msg
       endif
     endfor
   finally
-    echohl None
+    " echohl None
     let [&ruler, &showcmd] = xy
   endtry
 endfunction
@@ -1135,8 +1135,8 @@ function! easy_align#align(bang, live, visualmode, expr) range
     call s:align(a:bang, a:live, a:visualmode, a:firstline, a:lastline, a:expr)
   catch /^\%(Vim:Interrupt\|exit\)$/
     if empty(a:visualmode)
-      echon "\r"
-      echon "\r"
+      " echon "\r"
+      " echon "\r"
     else
       normal! gv
     endif
